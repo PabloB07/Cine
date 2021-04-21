@@ -1,0 +1,8 @@
+<h1>Assistants</h1>
+
+<ul>
+
+<% @assistants.each do |assist| %>
+  <li>Name: <%=link_to assist.name, assistant_path(assist)%> Number of Assistants: <%=assist.id%></li>
+<%end%>
+</ul>

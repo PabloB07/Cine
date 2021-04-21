@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   
   root to: "home#index"
 
-  resources :users do
-    resources :assistants do
-      resource :movies
-    end
-    end
+  resources :users
+  
+  resources :assistants do
+    resource :movies
+  end
 end
