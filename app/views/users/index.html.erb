@@ -1,0 +1,27 @@
+<h2>Formulario anidado, collection_select y radios y rutas anidadas.</h1>
+<%= form_with url: @users do |f| %>
+    <%= f.fields_for :movies do |movies_form|%>
+      <%= movies_form.label :movie %> <br>
+      <%= movies_form.collection_select :movie, Movie.all, :id, :movie, prompt: "Select the recent movie." %> <br>
+      <%= movies_form.collection_select :price, Movie.all, :id, :price, prompt: "Select the movie price." %> <br>
+      <%= movies_form.label :price %> <br>
+      <%= movies_form.submit :movies %>
+  <% end %>
+<% end %>
+
+
+<h2>Formulario anidado, collection_select y radios y rutas anidadas.</h1>
+
+<%= form_with url: @users do |f| %>
+  <% Movie.all.each do |m| %>
+    <%= f.label :user_id, m.movie %>
+    <%= f.radio_button :user_id, m.description %>
+    <%= f.label :user_id, m.description %>
+    <%= f.collection_check_boxes :user_id, User.all, :id, :username, checked: User.all.map(&:id) do |b| %>
+  <span>
+    <%= b.check_box %>
+    <%= b.label %>
+  </span>
+<% end %>
+  <% end %>
+<% end %>
