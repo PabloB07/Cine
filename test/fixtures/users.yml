@@ -1,6 +1,4 @@
-user1:
-  id: 1
-  username: "pablobcl"
-  age: 23
-  country: "Chile"
-  email: "pablo@pablo.cl"
+userone:
+  id:
+  message: "hello"
+  description: "Nothing."
