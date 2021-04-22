@@ -3,23 +3,44 @@ class UsersController < ApplicationController
     @user = User.all
   end
 
-  def create
-    @assistant = Assistant.find(params[:assistant_id])
-    @user = @assistant.users.create(user_params)
-      redirect_to assistant_path(@assistant)
+  def show
+    @user = User.find(params[:id])
   end
 
+  def new
+    @user = User.new
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def create
+    @user = User.new(params[:user])
+  if @user.save
+      redirect_to @user
+  else
+      render :new
+  end
 
   def destroy
-    @assistant = Assistant.find(params[:id])
-    @user = @assistant.users.find(params[:assistant_id])
+    @user = User.find(params[:id])
     @user.destroy
-      redirect_to assistant_path(@assistant)
+  
+    redirect_to @user
   end
 
+  def update
+  if @user.update(user_params)
+    redirect_to @user
+  else
+    render :edit
+  end
 
   private
     def user_params
-      params.require(:assistant).permit(:name, :message)
+      params.require(:user).permit(:username, :age, :country, movie_attributes: [:user_id, :movie, :description, :movies, :price])
     end
+  end
+end
 end

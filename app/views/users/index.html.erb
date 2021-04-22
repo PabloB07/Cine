@@ -3,9 +3,18 @@
     <%= f.fields_for :movies do |movies_form|%>
       <%= movies_form.label :movie %> <br>
       <%= movies_form.collection_select :movie, Movie.all, :id, :movie, prompt: "Select the recent movie." %> <br>
-      <%= movies_form.collection_select :price, Movie.all, :id, :price, prompt: "Select the movie price." %> <br>
       <%= movies_form.label :price %> <br>
-      <%= movies_form.submit :movies %>
+      <%= movies_form.collection_select :price, Movie.all, :id, :price, prompt: "Select the movie price." %> <br>
+  <% end %>
+<% end %>
+
+<h2>Formulario anidado, collection_select y radios y rutas anidadas.</h1>
+<%= form_with url: @users do |f| %>
+    <%= f.fields_for :movies do |movies_form|%>
+      <%= movies_form.label :movie %> <br>
+      <%= movies_form.text_field :movie %> <br>
+      <%= movies_form.label :price %> <br>
+      <%= movies_form.number_field :price %> <br>
   <% end %>
 <% end %>
 
